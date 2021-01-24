@@ -1,0 +1,23 @@
+.container{
+    font-family: Verdana;
+    margin: auto;
+    width: 50%;
+    text-align: center;
+
+}
+h1{
+    font-family: Verdana;
+    font-size: xx-large;
+}
+.button {
+    background-color: lightcoral;
+    color: white;
+    padding: 15px 32px;
+    font-family: Verdana;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+
+}
