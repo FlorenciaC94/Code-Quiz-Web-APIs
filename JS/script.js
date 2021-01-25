@@ -1,12 +1,10 @@
-///var Score = 0;
-///var Questions = 
-
-
 
 ///onclick="formSubmit()"
 
 var question = document.getElementById("question");
 var choices = Array.from(document.getElementsByClassName("choice-text"));
+var scoreText = document.getElementById("score");
+
 
 var currentQuestion = {};
 var acceptingAnswers = false;
@@ -53,23 +51,27 @@ var questions = [
 ];
 
 var correctPoints = 10;
-var maxQuestions = 5;
+var incorrectPoints = -5;
+
+
+
 
 startGame = ()=>{
-
-    questionCounter = 0;
     score = 0;
     availableQuestions = [...questions];
     console.log(availableQuestions);
     getNewQuestion();
 };
 
-getNewQuestion = ()=>{
-
-    if (availableQuestions.length === 0 || questionCounter >= maxQuestions){
-        return window.location.assign("/end.html");
+getNewQuestion = ()=>{ 
+    if (availableQuestions.length === 0){
+        return window.location.assign("/scores.html");
     }
     questionCounter++;
+    var questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
+    question.innerText = currentQuestion.question;
+
     var questionIndex = Math.floor(Math.random() * availableQuestions.length);
     currentQuestion = availableQuestions[questionIndex];
     question.innerText = currentQuestion.question;
@@ -91,7 +93,15 @@ choices.forEach(choice => {
         acceptingAnswers = false;
         var selectedChoice = e.target;
         var selectedAnswer = selectedChoice.dataset["number"];
+
+
         console.log(selectedAnswer);
+        console.log(selectedAnswer == currentQuestion.answer);
+        if (selectedAnswer == currentQuestion.answer){
+            alert("Correct!")
+        } else {
+            alert("Wrong")
+        };
         getNewQuestion();
     });
 })
